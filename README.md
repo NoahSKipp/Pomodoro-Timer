@@ -13,6 +13,6 @@ This was made using Java and JavaFX
 Functions:
 - Simple timer controls (Starts, Stop)
 - Individual timers in a session can be skipped
-- Timers switch, and start, automnatically
+- Timers switch, and start, automatically
 - Alarm sound once a timer runs out
 - Timer lengths are customizable in the settings

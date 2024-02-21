@@ -87,29 +87,29 @@ public class PomodoroTimer extends Application {
         return button;
     }
 
-private void startTimer() {
-        timeline = new Timeline(new KeyFrame(Duration.seconds(1), event -> {
-            if (!isPaused) {
-                if (pomodoroMinutes == 0 && seconds == 0) {
-                    handleCycleChange(); // This should trigger when the timer runs out naturally
-                    Toolkit.getDefaultToolkit().beep(); // Play a beep sound
-                } else {
-                    if (seconds == 0) {
-                        pomodoroMinutes--;
-                        seconds = 59;
+    private void startTimer() {
+            timeline = new Timeline(new KeyFrame(Duration.seconds(1), event -> {
+                if (!isPaused) {
+                    if (pomodoroMinutes == 0 && seconds == 0) {
+                        handleCycleChange(); // This should trigger when the timer runs out naturally
+                        Toolkit.getDefaultToolkit().beep(); // Play a beep sound
                     } else {
-                        seconds--;
+                        if (seconds == 0) {
+                            pomodoroMinutes--;
+                            seconds = 59;
+                        } else {
+                            seconds--;
+                        }
+                        timerLabel.setText(formatTime(pomodoroMinutes, seconds)); // Update the timer label
                     }
-                    timerLabel.setText(formatTime(pomodoroMinutes, seconds)); // Update the timer label
                 }
-            }
-        }));
-        timeline.setCycleCount(Animation.INDEFINITE);
-        timeline.play();
-        startButton.setDisable(true);
-        stopButton.setDisable(false);
-        skipButton.setDisable(false); // Enable the skip button
-    }
+            }));
+            timeline.setCycleCount(Animation.INDEFINITE);
+            timeline.play();
+            startButton.setDisable(true);
+            stopButton.setDisable(false);
+            skipButton.setDisable(false); // Enable the skip button
+        }
 
     private void stopTimer() {
         isPaused = !isPaused;
